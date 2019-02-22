@@ -4,6 +4,9 @@
 
 <%= link_to 'Create new cocktail', new_cocktail_path, class: 'btn btn-primary ' %>
 
+<%= cl_image_tag('peujyig5z8iafmwnrmnh', width: 400, crop: :fill) %>
+
+
 <% @cocktails.each do |cktl| %>
   <div>
     <h3><%= cktl.name %></h3>
@@ -15,3 +18,19 @@
     <%= link_to 'Add ingredient (dose)', new_cocktail_dose_path(cktl) %>
   </div>
 <% end %>
+
+<% @cocktails.each do |cktl| %>
+
+  <div class="card-product">
+    <div class="card-product-infos">
+    <%= cl_image_tag( cktl.photo, width: 400, crop: :fill) %>
+    <%= cktl.name %>
+      <ul>
+          <% cktl.doses.each do |dose| %>
+            <li><%= dose.ingredient.name %> (<%= dose.description %>)</li>
+          <% end %>
+      </ul>
+    <%= link_to 'Add ingredient (dose)', new_cocktail_dose_path(cktl) %>
+    <% end %>
+  </div>
+</div>
